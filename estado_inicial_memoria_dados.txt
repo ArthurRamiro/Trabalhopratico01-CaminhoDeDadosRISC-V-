@@ -1,0 +1,9 @@
+// Arquivo pode ser deixado vazio.
+// O processador no codigo Verilog ja inicializa a memoria
+// de dados com zeros antes de carregar este arquivo.
+//
+// Para testes futuros, valores podem ser pre-carregados aqui.
+// Exemplo:
+// @08 
+// 1234ABCD
+// (Isso colocaria o valor 1234ABCD no endereco 8 da memoria)

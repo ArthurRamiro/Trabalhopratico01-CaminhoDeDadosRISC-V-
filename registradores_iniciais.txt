@@ -1,0 +1,3 @@
+// Arquivo pode ser deixado vazio.
+// O banco de registradores no codigo Verilog ja inicializa
+// todos os 32 registradores com o valor 0 por padrao.
