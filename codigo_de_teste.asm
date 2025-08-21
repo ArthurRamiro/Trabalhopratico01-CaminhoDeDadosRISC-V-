@@ -1,4 +1,4 @@
-# Arquivo: codigo_de_teste.asm (VERSAO CORRIGIDA E COMENTADA)
+# Arquivo: codigo_de_teste.asm
 # Nota: As duas primeiras instrucoes sao ADDI, nao ANDI, para corresponder ao binario.
 
 # --- Bloco de Inicializacao ---
@@ -34,3 +34,4 @@ addi x2, x0, 1
 FIM:
 # Loop infinito para garantir que o processador pare aqui.
 beq x0, x0, FIM
+
