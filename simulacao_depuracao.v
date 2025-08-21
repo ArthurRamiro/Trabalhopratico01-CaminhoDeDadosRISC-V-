@@ -1,6 +1,3 @@
-// Arquivo: simulacao_depuracao.v
-// Contém TODOS os módulos e um monitor de depuração ativo.
-
 //-----------------------------------------------------------------
 // Módulo 1: Bancada de Teste (Testbench)
 //-----------------------------------------------------------------
@@ -32,7 +29,6 @@ module processador_riscv(input clk, input rst);
     wire flag_zero, tomar_desvio;
     reg [31:0] memoria_instrucoes [0:63]; reg [31:0] memoria_dados [0:63];
 
-    // --- CORREÇÃO: Inicialização explícita da memória de dados para evitar 'x' ---
     integer j;
     initial begin for (j=0; j<64; j=j+1) memoria_dados[j] = 32'b0; end
 
@@ -101,4 +97,5 @@ endmodule
 module gerador_de_imediatos(input [31:0] instrucao, output [31:0] imediato);
     wire [6:0] opcode = instrucao[6:0]; localparam OP_ITYPE=7'b0010011, OP_LOAD=7'b0000011, OP_STORE=7'b0100011, OP_BRANCH=7'b1100011;
     assign imediato = (opcode==OP_LOAD || opcode==OP_ITYPE) ? {{20{instrucao[31]}}, instrucao[31:20]} : (opcode==OP_STORE) ? {{20{instrucao[31]}}, instrucao[31:25], instrucao[11:7]} : (opcode==OP_BRANCH) ? {{20{instrucao[31]}}, instrucao[7], instrucao[30:25], instrucao[11:8], 1'b0} : 32'hdeadbeef;
+
 endmodule
