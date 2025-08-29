@@ -1,6 +1,3 @@
-// Arquivo: simulacao_completa.v
-// Contém TODOS os módulos com a CORREÇÃO DE LÓGICA na unidade de controle.
-
 //-----------------------------------------------------------------
 // Módulo 1: Bancada de Teste (Testbench)
 //-----------------------------------------------------------------
@@ -78,7 +75,7 @@ module processador_riscv(input clk, input rst);
 endmodule
 
 //-----------------------------------------------------------------
-// Módulo 3: Unidade de Controle Principal (LÓGICA CORRIGIDA)
+// Módulo 3: Unidade de Controle Principal
 //-----------------------------------------------------------------
 module unidade_de_controle(input [6:0] opcode, input [2:0] funct3, output reg escreve_reg, output reg mem_para_reg, output reg le_mem, output reg escreve_mem, output reg desvio_beq, output reg desvio_bne, output reg ula_src, output reg [1:0] op_ula);
     localparam OP_RTYPE   = 7'b0110011, OP_ITYPE   = 7'b0010011, OP_LOAD    = 7'b0000011, OP_STORE   = 7'b0100011, OP_BRANCH  = 7'b1100011;
@@ -96,7 +93,7 @@ module unidade_de_controle(input [6:0] opcode, input [2:0] funct3, output reg es
 endmodule
 
 //-----------------------------------------------------------------
-// Módulo 4: Controle da ULA (LÓGICA CORRIGIDA)
+// Módulo 4: Controle da ULA
 //-----------------------------------------------------------------
 module controle_da_ula(input [1:0] op_ula, input [2:0] funct3, output reg [3:0] saida_controle_ula);
     localparam ULA_SOMA=4'b0000, ULA_SUB=4'b0001, ULA_E=4'b0010, ULA_OU=4'b0011, ULA_SLL=4'b0100;
@@ -121,7 +118,7 @@ module controle_da_ula(input [1:0] op_ula, input [2:0] funct3, output reg [3:0] 
 endmodule
 
 //-----------------------------------------------------------------
-// Módulo 5: ULA (Unidade Lógica e Aritmética) - Sem alteracoes
+// Módulo 5: ULA (Unidade Lógica e Aritmética)
 //-----------------------------------------------------------------
 module ula(input [31:0] a, input [31:0] b, input [3:0] controle_ula, output reg [31:0] resultado, output zero);
     localparam ULA_SOMA=4'b0000, ULA_SUB=4'b0001, ULA_E=4'b0010, ULA_OU=4'b0011, ULA_SLL=4'b0100;
@@ -133,7 +130,7 @@ module ula(input [31:0] a, input [31:0] b, input [3:0] controle_ula, output reg 
 endmodule
 
 //-----------------------------------------------------------------
-// Módulo 6: Banco de Registradores - Sem alteracoes
+// Módulo 6: Banco de Registradores
 //-----------------------------------------------------------------
 module banco_de_registradores(input clk, input rst, input escreve_reg, input [4:0] end_leitura1, input [4:0] end_leitura2, input [4:0] end_escrita, input [31:0] dado_escrita, output [31:0] dado_leitura1, output [31:0] dado_leitura2);
     reg [31:0] registradores [0:31]; integer i;
@@ -144,7 +141,7 @@ module banco_de_registradores(input clk, input rst, input escreve_reg, input [4:
 endmodule
 
 //-----------------------------------------------------------------
-// Módulo 7: Gerador de Imediatos - Sem alteracoes
+// Módulo 7: Gerador de Imediatos
 //-----------------------------------------------------------------
 module gerador_de_imediatos(input [31:0] instrucao, output [31:0] imediato);
     wire [6:0] opcode = instrucao[6:0];
@@ -155,3 +152,4 @@ module gerador_de_imediatos(input [31:0] instrucao, output [31:0] imediato);
         (opcode==OP_BRANCH)                  ? {{20{instrucao[31]}}, instrucao[7], instrucao[30:25], instrucao[11:8], 1'b0} :
         32'hdeadbeef;
 endmodule
+
